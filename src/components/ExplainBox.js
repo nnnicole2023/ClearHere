@@ -3,37 +3,50 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { addToReview, awardCoins } from "../utils/storage";
+
 
 export default function ExplainBox() {
   const [inputText, setInputText] = useState("");
   const [explanation, setExplanation] = useState("");
-  const [hasQuiz, setHasQuiz] = useState(false);
-  const router = useRouter();
+  const [error, setError] = useState("");
 
   const handleExplain = async () => {
     const text = inputText.trim();
     if (!text) return;
 
     setExplanation("Thinking...");
-    setHasQuiz(false);
+    setError("");
 
-    const res = await fetch("/api/explain", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text }),
-    });
+    try {
+      const res = await fetch("/api/explain", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text }),
+      });
 
-    const data = await res.json();
+      if (!res.ok) {
+        throw new Error(`API error: ${res.status}`);
+      }
 
-    setExplanation(data.explanation || "No explanation.");
+      const data = await res.json();
 
-    if (data.quiz?.question) {
-      localStorage.setItem(
-        "latestQuiz",
-        JSON.stringify({ term: text, ...data.quiz })
-      );
-      setHasQuiz(true);
+      if (data.error) {
+        setError(data.error);
+        setExplanation("");
+        return;
+      }
+
+      setExplanation(data.explanation || "No explanation.");
+
+      if (data.explanation) {
+        addToReview(text);
+        awardCoins(1);
+      }
+    } catch (err) {
+      setError(err.message);
+      setExplanation("");
+      console.error("Error:", err);
     }
   };
 
@@ -47,12 +60,7 @@ export default function ExplainBox() {
       <button onClick={handleExplain}>Explain</button>
 
       {explanation && <p>{explanation}</p>}
-
-      {hasQuiz && (
-        <button onClick={() => router.push("/quiz")}>
-          Go to Quiz
-        </button>
-      )}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 }

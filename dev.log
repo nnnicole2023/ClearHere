@@ -1,0 +1,154 @@
+
+> my-app@0.1.0 dev
+> next dev
+
+⚠ Port 3000 is in use by process 82052, using available port 3001 instead.
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://10.24.45.175:3001
+- Environments: .env.local
+
+✓ Starting...
+✓ Ready in 562ms
+ GET / 200 in 323ms (compile: 266ms, render: 57ms)
+ GET / 200 in 56ms (compile: 1622µs, render: 54ms)
+ GET / 200 in 43ms (compile: 5ms, render: 38ms)
+OpenRouter response status: 200
+OpenRouter response body: 
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+
+         
+{"id":"gen-1769917118-QNSexpLQWTrUhJ57eWul","provider":"OpenAI","model":"openai/gpt-3.5-turbo","object":"chat.completion","created":1769917118,"choices":[{"logprobs":null,"finish_reason":"stop","native_finish_reason":"stop","index":0,"message":{"role":"assistant","content":"\"You cannot return this after buying it.\"","refusal":null,"reasoning":null}}],"system_fingerprint":null,"usage":{"prompt_tokens":146,"completion_tokens":8,"total_tokens":154,"cost":0.000085,"is_byok":false,"prompt_tokens_details":{"cached_tokens":0,"audio_tokens":0},"cost_details":{"upstream_inference_cost":0.000085,"upstream_inference_prompt_cost":0.000073,"upstream_inference_completions_cost":0.000012},"completion_tokens_details":{"reasoning_tokens":0,"audio_tokens":0}}}
+Parsed API data: {
+  "id": "gen-1769917118-QNSexpLQWTrUhJ57eWul",
+  "provider": "OpenAI",
+  "model": "openai/gpt-3.5-turbo",
+  "object": "chat.completion",
+  "created": 1769917118,
+  "choices": [
+    {
+      "logprobs": null,
+      "finish_reason": "stop",
+      "native_finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "\"You cannot return this after buying it.\"",
+        "refusal": null,
+        "reasoning": null
+      }
+    }
+  ],
+  "system_fingerprint": null,
+  "usage": {
+    "prompt_tokens": 146,
+    "completion_tokens": 8,
+    "total_tokens": 154,
+    "cost": 0.000085,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.000085,
+      "upstream_inference_prompt_cost": 0.000073,
+      "upstream_inference_completions_cost": 0.000012
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}
+Content from API: "You cannot return this after buying it."
+Final response: {
+  "explanation": "You cannot return this after buying it."
+}
+ POST /api/explain 200 in 19.5s (compile: 54ms, render: 19.5s)

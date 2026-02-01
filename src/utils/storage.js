@@ -53,25 +53,5 @@ export function awardCoins(amount = 1) {
   saveState(state)
 }
 
-export function awardXp(amount = 1) {
-  const state = loadState();
-  if (!state) return;
-  state.xp += amount;
-  saveState(state);
-}
 
-// 用 term 作为输入（内部会 normalize 成 key 去删）
-export function removeFromReview(term) {
-  const state = loadState();
-  if (!state) return;
 
-  const key = (term || "")
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, " ");
-
-  if (!key) return;
-
-  state.reviewList = state.reviewList.filter(item => item.key !== key);
-  saveState(state);
-}
