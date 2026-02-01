@@ -1,0 +1,15 @@
+
+[
+  {
+    "term": "No Loitering",
+    "context": "public_sign",
+    "level": "beginner",
+    "fallback_explanation": "You are not allowed to stay here for a long time."
+  },
+  {
+    "term": "Final Notice",
+    "context": "official_letter",
+    "level": "beginner",
+    "fallback_explanation": "This is the last warning before action is taken."
+  }
+]
