@@ -17,7 +17,8 @@ export function loadState() {
     const initialState = {
       xp: 0,
       coins: 0,
-      reviewList: []
+      reviewList: [],
+      plantGrowth: 0
     }
     localStorage.setItem("appState", JSON.stringify(initialState))
     return initialState
@@ -51,6 +52,47 @@ export function awardCoins(amount = 1) {
   if (!state) return
   state.coins += amount
   saveState(state)
+}
+
+export function growPlant() {
+  const state = loadState()
+  if (!state) return
+  state.plantGrowth = (state.plantGrowth || 0) + 1
+  saveState(state)
+}
+
+export function getPlantStage() {
+  const state = loadState()
+  const growth = state?.plantGrowth || 0
+  
+  if (growth < 5) {
+    return {
+      stage: 'seedling',
+      emoji: '🌱',
+      name: 'Seedling',
+      message: 'Your plant just started.',
+      nextIn: 5 - growth,
+      isMax: false
+    }
+  }
+  if (growth < 12) {
+    return {
+      stage: 'growing',
+      emoji: '🌿',
+      name: 'Growing',
+      message: "Nice! You're getting the hang of it.",
+      nextIn: 12 - growth,
+      isMax: false
+    }
+  }
+  return {
+    stage: 'blooming',
+    emoji: '🌳',
+    name: 'Blooming',
+    message: "Milestone reached. You're thriving.",
+    nextIn: 0,
+    isMax: true
+  }
 }
 
 
